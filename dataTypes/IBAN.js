@@ -24,6 +24,35 @@
                 and decides if it is value is valid or not */
             validateValue: function (sValue){
 
+                if(!IBAN.isValid(sValue))
+                     throw new ValidateException(sValue + " is not a valid IBAN");
+
+                return sValue;
+
+            },
+
+            //  format the internal presentation and format the data for the user           
+            formatValue: function(sValue){
+                //add a space after every fourth position
+                let aIBAN;
+                let sIban = "";
+                aIBAN = sValue.split("");
+                aIBAN.forEach((element, index) => {
+                    if((index > 0) && (index % 4 === 0)){
+                        sIban = sIban + " " + element;
+                    } else {
+                        sIban += element;
+                    }
+
+                });
+                
+                return sIban;
+            }
+        });
+    });
+})();
+
+/*
                 //Tests
                 console.log("==============Correct IBANS===============");
                 console.log(IBAN.isValid("AL90208110080000001039531801") + ":    AL90208110080000001039531801");
@@ -82,32 +111,4 @@
                 console.log(IBAN.isValid("ES1020903200511041045040 ") + ":    ES1020903200500041045040 ");
                 console.log(IBAN.isValid("CZ4201000000111505030267") + ":    CZ4201000000195505030267");
                 console.log(IBAN.isValid("HU29117080012114779400000000") + ":    HU29117080012054779400000000");
-
-
-                if(!IBAN.isValid(sValue))
-                     throw new ValidateException(sValue + " is not a valid IBAN");
-
-                return sValue;
-
-            },
-
-            //  format the internal presentation and format the data for the user           
-            formatValue: function(sValue){
-                //add a space after every fourth position
-                let aIBAN;
-                let sIban = "";
-                aIBAN = sValue.split("");
-                aIBAN.forEach((element, index) => {
-                    if((index > 0) && (index % 4 === 0)){
-                        sIban = sIban + " " + element;
-                    } else {
-                        sIban += element;
-                    }
-
-                });
-                
-                return sIban;
-            }
-        });
-    });
-})();
+*/

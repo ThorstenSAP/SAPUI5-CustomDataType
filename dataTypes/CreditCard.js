@@ -30,21 +30,28 @@
                 //by2 If the value exceeds 9, subtract 9 from it
                 //Then add all the numbers together
                 let iTotal = 0;
+                //if length is 15 -> the last digit is popped 
+                if(aDigits.length === 15){
+                    aDigits.forEach(function(element,index){
+                        if (index %2 === 0){
+                            aDigits[index] = (aDigits[index]*2);
+                            if(aDigits[index] > 9)
+                            aDigits[index] -= 9;
+                        }
+                        iTotal+= parseInt(aDigits[index], 10);
+                    });
 
-                for(let i=0; i<aDigits.length; i++){
-                    if(i%2 === 0){
-                        aDigits[i] = (aDigits[i]*2);
-                        if(aDigits[i] > 9)
-                            aDigits[i] -= 9;
-                    }
-                    iTotal+= parseInt(aDigits[i], 10);
+                    //multiply by the result by 9
+                    iTotal *=9;
+
+                    //iTotal MODULO 10 must be equal to iCheckDigit to be a valid credit card number
+                    if(iTotal % 10 !== iCheckDigit)
+                        throw new ValidateException(sValue + " is not a valid credit card number");
+                }else {
+                    throw new ValidateException(sValue + " is not a valid credit card number (wrong length)");
+
                 }
-                //multiply by the result by 9
-                iTotal *=9;
 
-                //iTotal MODULO 10 must be equal to iCheckDigit to be a valid credit card number
-                if(iTotal % 10 !== iCheckDigit)
-                    throw new ValidateException(sValue + " is not a valid credit card number");
             },
 
             //  format the internal presentation and format the data for the user           
