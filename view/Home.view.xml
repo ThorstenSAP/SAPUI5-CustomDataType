@@ -1,0 +1,43 @@
+<mvc:View
+	controllerName="sap.ui.demo.nav.controller.Home"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+	<Page title="{i18n>homePageTitle}" class="sapUiResponsiveContentPadding">
+		<content>
+
+
+		
+			<Label text="Enter Visa Credit Card Number" tooltip="CreditCardNumber"/>
+			<Input
+				id="ccInput"
+				class="sapUiSmallMarginBottom"
+				placeholder="Enter Visa Card Number"
+				value="{
+					path : '/creditCardNumber',
+					type : 'sap.ui.demo.nav.dataTypes.CreditCard'
+				}" />
+
+			<Label text="Enter Email-Adress" tooltip="emailAdress"/>
+			<Input
+				id="emailAddressInput"
+				class="sapUiSmallMarginBottom"
+				placeholder="Enter Email Address"
+				value="{
+					path : '/emailAddress',
+					type : 'sap.ui.demo.nav.dataTypes.EmailAddress'
+				}" />
+
+			<Label text="Enter IBAN" tooltip="IBAN"/>
+			<Input
+				id="inputIBAN"
+				class="sapUiSmallMarginBottom"
+				placeholder="Enter IBAN"
+				value="{
+					path : '/IBAN',
+					type : 'sap.ui.demo.nav.dataTypes.IBAN'
+				}" />
+			
+
+		</content>
+	</Page>
+</mvc:View>
